@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 999;
+const port = process.env.PORT || 999; // Render 사용, 포트 999
 
 const http = require("http");
 const server = http.createServer(app); // express 앱을 http 서버에 올림
@@ -383,3 +383,4 @@ webSocketServer.on("connection", (socket, request) => {
     }
   });
 });
+
