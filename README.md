@@ -11,7 +11,7 @@
 * 실행 방법 : 십이장기_VBA.pptm 실행 -> 상단 '콘텐츠 사용(매크로 포함)' 클릭 -> F5 (쇼 실행)
 * 주의 사항 : Windows 환경에 최적화되어 있습니다. (Win32/64 API 사용으로 인해 Mac OS 파워포인트의 경우 정상 작동 하지 않을 수 있습니다.)
 
-### 2. 십이장기 Web 리메이크 (./Project2_십이장기_리메이크_Web)
+### 2. 십이장기 Web 리메이크 (./Project2_12Janggi_Remake_Web)
 * 언어 및 기술 : JavaScript, Node.js, WebSocket(ws), Express
 * 설명 : VBA 프로젝트의 한계를 극복하기 위해 실시간 네트워크 통신 기능을 추가하여 리메이크한 프로젝트입니다.
 * 실행 방법 : 
@@ -19,6 +19,8 @@
   2. node server.js 명령어로 서버 실행
   3. 브라우저 주소 창에 http://localhost:999 입력 후 접속
 * 주의 사항 : 서버가 999 포트를 사용합니다.
+* https://computerscience-portfolio.onrender.com 에서 플레이 할 수 있습니다.
+
 
 ### 3. C언어 기반 기계학습 구현 (./Project3_기계학습_C)
 * 언어 및 기술 : C언어, 선형 회귀, 로지스틱 회귀, 경사하강법
