@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "live-server . --port=3000 --host=localhost --no-browser"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0",
+    "ws": "^8.18.3"
+  }
+}
