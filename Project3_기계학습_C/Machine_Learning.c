@@ -48,7 +48,7 @@ int main() {
 	data_file = fopen("train.csv", "r");
 
 	if (data_file == NULL) {
-		printf("ÆÄÀÏ Å½»ö ½ÇÆĞ");
+		printf("íŒŒì¼ íƒìƒ‰ ì‹¤íŒ¨");
 		return 0;
 	}
 
@@ -60,9 +60,9 @@ int main() {
 		self_test = 0;
 	}
 
-	// Çì´õ ¿©ºÎ
+	// í—¤ë” ì—¬ë¶€
 	do {
-		printf("Ã¹ ÇàÀÌ Çì´õÀÎ°¡¿ä? y, n\n");
+		printf("ì²« í–‰ì´ í—¤ë”ì¸ê°€ìš”? y, n\n");
 		scanf("%c", &answer);
 		if (answer == 'y' || answer == 'Y') {
 			have_header = 1;
@@ -73,14 +73,14 @@ int main() {
 			break;
 		}
 		else {
-			printf("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+			printf("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n");
 		}
-		while ((c = getchar()) != '\n' && c != EOF); // ¹öÆÛ ºñ¿ì±â
+		while ((c = getchar()) != '\n' && c != EOF); // ë²„í¼ ë¹„ìš°ê¸°
 	} while (have_header == 2);
 
 
 
-	// n_feature, n_sample, °áÃøÄ¡ Ã³¸®
+	// n_feature, n_sample, ê²°ì¸¡ì¹˜ ì²˜ë¦¬
 	fgets(line, sizeof(line), data_file);
 	for (int f = 0; line[f] != '\0'; f++) {
 		if (line[f] == ',') {
@@ -104,7 +104,7 @@ int main() {
 		}
 		
 		if (r != n_features) {
-			printf("°áÃøÄ¡°¡ Á¸ÀçÇÕ´Ï´Ù. ÇÁ·Î±×·¥ Á¾·á");
+			printf("ê²°ì¸¡ì¹˜ê°€ ì¡´ì¬í•©ë‹ˆë‹¤. í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 			break;
 		}
 	}
@@ -115,7 +115,7 @@ int main() {
 
 
 
-	// Æ¯¼º°ª µ¿Àû ÇÒ´ç (¿­ º° ÆÄ½Ì)
+	// íŠ¹ì„±ê°’ ë™ì  í• ë‹¹ (ì—´ ë³„ íŒŒì‹±)
 	data.x = (double**)malloc(sizeof(double*) * n_features);
 
 	while (i < n_features) {
@@ -123,13 +123,13 @@ int main() {
 		i++;
 	}
 
-	// ½ÇÁ¦°ª µ¿Àû ÇÒ´ç
+	// ì‹¤ì œê°’ ë™ì  í• ë‹¹
 	data.y = (double*)malloc(sizeof(double) * n_samples);
 
 
 
 
-	// °¢ µ¥ÀÌÅÍ¸¦ ±¸Á¶Ã¼¿¡ ÀúÀå
+	// ê° ë°ì´í„°ë¥¼ êµ¬ì¡°ì²´ì— ì €ì¥
 	if (have_header) { fgets(line, sizeof(line), data_file); }
 	while (fgets(line, sizeof(line), data_file) != NULL) {
 		tok = strtok(line, ",");
@@ -138,7 +138,7 @@ int main() {
 			tok = strtok(NULL, ",");
 			//printf("data.x[%d][%d] : %f\n", i, j, data.x[i][j]);
 		}
-		tok[strcspn(tok, "\r\n")] = '\0';	// ÇàÀÌ ¹Ù²ğ ¶§ °³Çà¹®ÀÚ Á¦°Å
+		tok[strcspn(tok, "\r\n")] = '\0';	// í–‰ì´ ë°”ë€” ë•Œ ê°œí–‰ë¬¸ì ì œê±°
 		data.y[j] = strtod(tok, &num_error);
 		//printf("data.y[%d] : %f\n", j, data.y[j]);
 		j++;
@@ -147,15 +147,15 @@ int main() {
 	printf("\n");
 
 
-	// µ¥ÀÌÅÍ °ª Ãâ·Â
+	// ë°ì´í„° ê°’ ì¶œë ¥
 	if (have_header == 1) {
 		printf("%s", fgets(line, sizeof(line), data_file));
 	}
 	else {
 		for (i = 0; i < n_features; i++) {
-			printf("¿äÀÎ%d  ", i + 1);
+			printf("ìš”ì¸%d  ", i + 1);
 		}
-		printf("½ÇÁ¦°ª\n");
+		printf("ì‹¤ì œê°’\n");
 	}
 	for (i = 0; i < n_samples; i++) {
 		for (j = 0; j < n_features; j++) {
@@ -169,9 +169,9 @@ int main() {
 	printf("\n\n");
 
 
-	// ¸ğµ¨ ¼±ÅÃ
+	// ëª¨ë¸ ì„ íƒ
 	while (1) {
-		printf("\nÇĞ½À¸ğµ¨À» ¼±ÅÃÇØÁÖ¼¼¿ä. (¼ıÀÚ ÀÔ·Â) \n1. ¼±ÇüÈ¸±Í\n2. ·ÎÁö½ºÆ½ È¸±Í\n");
+		printf("\ní•™ìŠµëª¨ë¸ì„ ì„ íƒí•´ì£¼ì„¸ìš”. (ìˆ«ì ì…ë ¥) \n1. ì„ í˜•íšŒê·€\n2. ë¡œì§€ìŠ¤í‹± íšŒê·€\n");
 		scanf("%d", &model);
 		if (model == 1) {
 			model--;
@@ -182,7 +182,7 @@ int main() {
 			break;
 		}
 		else {
-			printf("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n\n");
+			printf("ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n\n");
 			while ((c = getchar()) != '\n' && c != EOF);
 			continue;
 		}
@@ -193,12 +193,12 @@ int main() {
 
 
 
-	//µ¥ÀÌÅÍ Á¤±ÔÈ­
-	if (model == 0) { // ¼±ÇüÈ¸±Í
+	//ë°ì´í„° ì •ê·œí™”
+	if (model == 0) { // ì„ í˜•íšŒê·€
 		average = (double*)malloc(sizeof(double) * (n_features + 1));
 		standard = (double*)malloc(sizeof(double) * (n_features + 1));
 	}
-	else { // ·ÎÁö½ºÆ½ È¸±Í
+	else { // ë¡œì§€ìŠ¤í‹± íšŒê·€
 		average = (double*)malloc(sizeof(double) * (n_features));
 		standard = (double*)malloc(sizeof(double) * (n_features));
 	}
@@ -210,7 +210,7 @@ int main() {
 			sum += data.x[i][j];
 		}
 
-		average[i] = sum / n_samples; // Æò±Õ
+		average[i] = sum / n_samples; // í‰ê· 
 	}
 	for (i = 0; i < n_features; i++) {
 		sum = 0;
@@ -218,7 +218,7 @@ int main() {
 			sum += (data.x[i][j] - average[i]) * (data.x[i][j] - average[i]);
 		}
 
-		standard[i] = sqrt( sum / (n_samples - 1)); // Ç¥ÁØÆíÂ÷
+		standard[i] = sqrt( sum / (n_samples - 1)); // í‘œì¤€í¸ì°¨
 	}
 
 	if (model == 0) {
@@ -226,17 +226,17 @@ int main() {
 		for (i = 0; i < n_samples; i++) {
 			sum += data.y[i];
 		}
-		average[n_features] = sum / n_samples; // Æò±Õ
+		average[n_features] = sum / n_samples; // í‰ê· 
 
 		sum = 0;
 		for (i = 0; i < n_samples; i++) {
 			sum += (data.y[i] - average[n_features]) * (data.y[i] - average[n_features]);
 		}
-		standard[n_features] = sqrt(sum / (n_samples - 1)); // Ç¥ÁØÆíÂ÷
+		standard[n_features] = sqrt(sum / (n_samples - 1)); // í‘œì¤€í¸ì°¨
 	}
 
 	
-	// Ç¥ÁØÈ­
+	// í‘œì¤€í™”
 	for (i = 0; i < n_features; i++) {
 		for (j = 0; j < n_samples; j++) {
 			data.x[i][j] = (data.x[i][j] - average[i]) / standard[i];
@@ -251,15 +251,15 @@ int main() {
 	}
 	
 	/*
-	// Ç¥ÁØÈ­µÈ µ¥ÀÌÅÍ °ª Ãâ·Â
+	// í‘œì¤€í™”ëœ ë°ì´í„° ê°’ ì¶œë ¥
 	if (have_header == 1) {
 		printf("%s", fgets(line, sizeof(line), data_file));
 	}
 	else {
 		for (i = 0; i < n_features; i++) {
-			printf("¿äÀÎ%d  ", i + 1);
+			printf("ìš”ì¸%d  ", i + 1);
 		}
-		printf("½ÇÁ¦°ª\n");
+		printf("ì‹¤ì œê°’\n");
 	}
 	for (i = 0; i < n_samples; i++) {
 		for (j = 0; j < n_features; j++) {
@@ -273,14 +273,14 @@ int main() {
 
 
 
-	// °¡ÁßÄ¡¿Í ¿¹Ãø°ª ÇÒ´ç
+	// ê°€ì¤‘ì¹˜ì™€ ì˜ˆì¸¡ê°’ í• ë‹¹
 	weight = (double*)malloc(sizeof(double)*(n_features+1));
-	pred = (double*)malloc(sizeof(double) * n_samples); // °¢ µ¥ÀÌÅÍ¿¡ ´ëÇÑ ¿¹Ãø°ª
+	pred = (double*)malloc(sizeof(double) * n_samples); // ê° ë°ì´í„°ì— ëŒ€í•œ ì˜ˆì¸¡ê°’
 
-	srand(time(NULL)); // ·£´ı ½Ãµå ÃÊ±âÈ­
+	srand(time(NULL)); // ëœë¤ ì‹œë“œ ì´ˆê¸°í™”
 
 	for (i = 0; i < n_features + 1; i++) {
-		weight[i] = ((double)rand() / RAND_MAX * 2.0 - 1.0) * 0.01; // °¡ÁßÄ¡ ÃÊ±â°ª ¼³Á¤. (-0.01 ~ 0.01)
+		weight[i] = ((double)rand() / RAND_MAX * 2.0 - 1.0) * 0.01; // ê°€ì¤‘ì¹˜ ì´ˆê¸°ê°’ ì„¤ì •. (-0.01 ~ 0.01)
 	}
 	/*
 	// f(x) = w0 + w1 * x1 + w2 * x2 ..
@@ -294,17 +294,17 @@ int main() {
 		printf("%f\n", pred[i]);
 	}
 	*/
-	RE_PRED(pred, weight, &data, n_features, n_samples); // pred ¹è¿­¿¡ ¿¹Ãø°ª ÇÒ´ç
+	RE_PRED(pred, weight, &data, n_features, n_samples); // pred ë°°ì—´ì— ì˜ˆì¸¡ê°’ í• ë‹¹
 
 	
 
-	// °æ»çÇÏ°­¹ı ¾÷µ¥ÀÌÆ®
+	// ê²½ì‚¬í•˜ê°•ë²• ì—…ë°ì´íŠ¸
 
-	if (model == 0) { // ¼±Çü È¸±Í
+	if (model == 0) { // ì„ í˜• íšŒê·€
 		k = 0;
 		do {
 			mse = MSE(pred, &data, n_features, n_samples);
-			printf("\n%d¹øÂ° ¾÷µ¥ÀÌÆ®\n", k);
+			printf("\n%dë²ˆì§¸ ì—…ë°ì´íŠ¸\n", k);
 			for (i = 0; i < n_features + 1; i++) {
 				sum = 0;
 				if (i == 0) {
@@ -321,14 +321,14 @@ int main() {
 				printf("w'%d = %f  ", i, weight[i]);
 			}
 			RE_PRED(pred, weight, &data, n_features, n_samples);
-			printf("\nMSE(Àü) = %f", mse);
-			printf("\nMSE(ÈÄ) = %f\n", MSE(pred, &data, n_features, n_samples));
+			printf("\nMSE(ì „) = %f", mse);
+			printf("\nMSE(í›„) = %f\n", MSE(pred, &data, n_features, n_samples));
 			k++;
 		} while (mse != MSE(pred, &data, n_features, n_samples) && k < 100000);
 
 
 
-		// Ç¥ÁØÈ­ µÇµ¹¸®±â (¼±Çü)
+		// í‘œì¤€í™” ë˜ëŒë¦¬ê¸° (ì„ í˜•)
 		sum = 0;
 		for (i = 1; i < n_features + 1; i++) {
 			weight[i] = weight[i] * standard[n_features] / standard[i - 1];
@@ -337,11 +337,11 @@ int main() {
 
 		weight[0] = average[n_features] - sum;
 
-		printf("\n\n\n\n[¾÷µ¥ÀÌÆ®µÈ °¡ÁßÄ¡]\n");
+		printf("\n\n\n\n[ì—…ë°ì´íŠ¸ëœ ê°€ì¤‘ì¹˜]\n");
 		for (i = 0; i < n_features + 1; i++) {
 			printf("w%d = %f\n", i, weight[i]);
 		}
-		printf("\n\n\n\n[ÃßÁ¤µÈ È¸±Í¸ğÇü]\ny = ");
+		printf("\n\n\n\n[ì¶”ì •ëœ íšŒê·€ëª¨í˜•]\ny = ");
 		for (i = 0; i < n_features + 1; i++) {
 			if (i != 0) {
 				if (weight[i] > 0) {
@@ -357,11 +357,11 @@ int main() {
 			
 		}
 	}
-	else { // ·ÎÁö½ºÆ½ È¸±Í
+	else { // ë¡œì§€ìŠ¤í‹± íšŒê·€
 		k = 0;
 		do {
 			bce = BCE(pred, &data, n_features, n_samples);
-			printf("\n%d¹øÂ° ¾÷µ¥ÀÌÆ®\n", k);
+			printf("\n%dë²ˆì§¸ ì—…ë°ì´íŠ¸\n", k);
 			for (i = 0; i < n_features + 1; i++) {
 				sum = 0;
 				if (i == 0) {
@@ -378,13 +378,13 @@ int main() {
 				printf("w'%d = %f  ", i, weight[i]);
 			}
 			RE_PRED(pred, weight, &data, n_features, n_samples);
-			printf("\nBCE(Àü) = %f", bce);
-			printf("\nBCE(ÈÄ) = %f\n", BCE(pred, &data, n_features, n_samples));
+			printf("\nBCE(ì „) = %f", bce);
+			printf("\nBCE(í›„) = %f\n", BCE(pred, &data, n_features, n_samples));
 			k++;
 		} while (fabs (bce - BCE(pred, &data, n_features, n_samples)) > 1e-6 && k < 100000);
 
 
-		// Ç¥ÁØÈ­ µÇµ¹¸®±â (·ÎÁö½ºÆ½)
+		// í‘œì¤€í™” ë˜ëŒë¦¬ê¸° (ë¡œì§€ìŠ¤í‹±)
 		sum = 0;
 		for (i = 1; i < n_features + 1; i++) {
 			weight[i] = weight[i] / standard[i - 1];
@@ -394,11 +394,11 @@ int main() {
 		weight[0] = weight[0] - sum;
 
 
-		printf("\n\n\n\n[¾÷µ¥ÀÌÆ®µÈ °¡ÁßÄ¡]\n");
+		printf("\n\n\n\n[ì—…ë°ì´íŠ¸ëœ ê°€ì¤‘ì¹˜]\n");
 		for (i = 0; i < n_features + 1; i++) {
 			printf("w%d = %f\n", i, weight[i]);
 		}
-		printf("\n\n\n\n[¼±Çü ÆÇº° ÇÔ¼ö]\nz = ");
+		printf("\n\n\n\n[ì„ í˜• íŒë³„ í•¨ìˆ˜]\nz = ");
 		for (i = 0; i < n_features + 1; i++) {
 			if (i != 0) {
 				if (weight[i] > 0) {
@@ -415,12 +415,12 @@ int main() {
 
 	}
 
-	printf("\n\n\nÇĞ½ÀÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.\n\n\n\n");
+	printf("\n\n\ní•™ìŠµì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.\n\n\n\n");
 
 
 
-	// Å×½ºÆ® ÇØº¸±â
-	if (self_test == 0) { // test.csv ÆÄÀÏ Á¸Àç
+	// í…ŒìŠ¤íŠ¸ í•´ë³´ê¸°
+	if (self_test == 0) { // test.csv íŒŒì¼ ì¡´ì¬
 		while (fgets(test_line, sizeof(test_line), test_file) != NULL) {
 			//printf("%s", test_line);
 			r = 0;
@@ -433,7 +433,7 @@ int main() {
 			}
 
 			if (r != n_features) {
-				printf("°áÃøÄ¡°¡ Á¸ÀçÇÕ´Ï´Ù.\n");
+				printf("ê²°ì¸¡ì¹˜ê°€ ì¡´ì¬í•©ë‹ˆë‹¤.\n");
 				self_test = 1;
 				goto end_if;
 			}
@@ -441,7 +441,7 @@ int main() {
 		rewind(test_file);
 
 
-		// µ¿Àû ÇÒ´ç
+		// ë™ì  í• ë‹¹
 		test_data.x = (double**)malloc(sizeof(double*) * n_features);
 		i = 0;
 		while (i < n_features) {
@@ -452,7 +452,7 @@ int main() {
 		test_data.y = (double*)malloc(sizeof(double) * n_test_samples);
 
 
-		// °ª ÇÒ´ç
+		// ê°’ í• ë‹¹
 		j = 0;
 		while (fgets(test_line, sizeof(test_line), test_file) != NULL) {
 			tok = strtok(test_line, ",");
@@ -464,18 +464,18 @@ int main() {
 			j++;
 		}
 
-		// ¿¹Ãø°ª Ãâ·Â
+		// ì˜ˆì¸¡ê°’ ì¶œë ¥
 
-		if (model == 0) { // ¼±Çü È¸±Í
-			printf("\n[¼±Çü È¸±Í ¿¹Ãø°ª]\n");
+		if (model == 0) { // ì„ í˜• íšŒê·€
+			printf("\n[ì„ í˜• íšŒê·€ ì˜ˆì¸¡ê°’]\n");
 			if (have_header == 1) {
 				printf("%s", fgets(line, sizeof(line), data_file));
 			}
 			else {
 				for (i = 0; i < n_features; i++) {
-					printf("¿äÀÎ%d,", i + 1);
+					printf("ìš”ì¸%d,", i + 1);
 				}
-				printf("½ÇÁ¦°ª\n");
+				printf("ì‹¤ì œê°’\n");
 			}
 			for (i = 0; i < n_test_samples; i++) {
 				sum = weight[0];
@@ -487,16 +487,16 @@ int main() {
 				printf("=>  %f\n", test_data.y[i]);
 			}
 		}
-		else { // ·ÎÁö½ºÆ½ È¸±Í
-			printf("\n[·ÎÁö½ºÆ½ È¸±Í ¿¹Ãø°ª]\n");
+		else { // ë¡œì§€ìŠ¤í‹± íšŒê·€
+			printf("\n[ë¡œì§€ìŠ¤í‹± íšŒê·€ ì˜ˆì¸¡ê°’]\n");
 			if (have_header == 1) {
 				printf("%s", fgets(line, sizeof(line), data_file));
 			}
 			else {
 				for (i = 0; i < n_features; i++) {
-					printf("¿äÀÎ%d,", i + 1);
+					printf("ìš”ì¸%d,", i + 1);
 				}
-				printf("½ÇÁ¦°ª\n");
+				printf("ì‹¤ì œê°’\n");
 			}
 			for (i = 0; i < n_test_samples; i++) {
 				k = -1;
@@ -521,7 +521,7 @@ int main() {
 	rewind(data_file);
 	end_if:
 	while (1) {
-		printf("\n\nÅ×½ºÆ®ÇÒ µ¥ÀÌÅÍ¸¦ Á÷Á¢ ÀÔ·ÂÇØÁÖ¼¼¿ä. (ÄÄ¸¶·Î ±¸ºĞ, end ÀÔ·Â½Ã Á¾·á)\n");
+		printf("\n\ní…ŒìŠ¤íŠ¸í•  ë°ì´í„°ë¥¼ ì§ì ‘ ì…ë ¥í•´ì£¼ì„¸ìš”. (ì»´ë§ˆë¡œ êµ¬ë¶„, end ì…ë ¥ì‹œ ì¢…ë£Œ)\n");
 		scanf("%s", test_line);
 
 		
@@ -529,7 +529,7 @@ int main() {
 			break;
 		}
 		
-		// ¿¹Ãø°ª °è»ê
+		// ì˜ˆì¸¡ê°’ ê³„ì‚°
 		sum = weight[0];
 		tok = strtok(test_line, ",");
 		for (i = 0; i < n_features && tok != NULL; i++) {
@@ -537,14 +537,14 @@ int main() {
 			tok = strtok(NULL, ",");
 		}
 
-		if (model == 0) { // ¼±Çü È¸±Í
-			printf("\n[¼±Çü È¸±Í ¿¹Ãø°ª]\n");
+		if (model == 0) { // ì„ í˜• íšŒê·€
+			printf("\n[ì„ í˜• íšŒê·€ ì˜ˆì¸¡ê°’]\n");
 			printf(" =>  %f  ", sum);
 		}
-		else { // ·ÎÁö½ºÆ½ È¸±Í
+		else { // ë¡œì§€ìŠ¤í‹± íšŒê·€
 			k = -1;
 
-			printf("\n[·ÎÁö½ºÆ½ È¸±Í ¿¹Ãø°ª]\n");
+			printf("\n[ë¡œì§€ìŠ¤í‹± íšŒê·€ ì˜ˆì¸¡ê°’]\n");
 			if (SIGMOID(sum) < 0.5) {
 				k = 0;
 			}
@@ -568,7 +568,7 @@ int main() {
 
 
 
-	// µ¿Àû ¸Ş¸ğ¸® Á¦°Å
+	// ë™ì  ë©”ëª¨ë¦¬ ì œê±°
 	i = 0;
 	while (i < n_features) {
 		free(data.x[i]);
@@ -581,7 +581,7 @@ int main() {
 	free(standard);
 	return 0;
 }
-// ¿¹Ãø°ª °è»ê
+// ì˜ˆì¸¡ê°’ ê³„ì‚°
 void RE_PRED(double* pred, double* W, struct DATA* D, int N_F, int N_S) {
 	int i;
 	int j;
@@ -595,11 +595,11 @@ void RE_PRED(double* pred, double* W, struct DATA* D, int N_F, int N_S) {
 		}
 
 		pred[i] = sum;
-		//printf("¿¹Ãø°ª : %f  ", pred[i]);
+		//printf("ì˜ˆì¸¡ê°’ : %f  ", pred[i]);
 	}
 }
 
-// ¼±Çü È¸±Í ¼Õ½ÇÇÔ¼ö MSE
+// ì„ í˜• íšŒê·€ ì†ì‹¤í•¨ìˆ˜ MSE
 double MSE(double* P, struct DATA* D, int N_F, int N_S) {
 	double sum = 0;
 	int i;
@@ -612,12 +612,12 @@ double MSE(double* P, struct DATA* D, int N_F, int N_S) {
 	return sum/N_S;
 }
 
-// ½Ã±×¸ğÀÌµå ÇÔ¼ö
+// ì‹œê·¸ëª¨ì´ë“œ í•¨ìˆ˜
 double SIGMOID(double linear_pred) {
 	return 1 / (1 + exp(-linear_pred));
 }
 
-// ·ÎÁö½ºÆ½ È¸±Í ¼Õ½ÇÇÔ¼ö BCE
+// ë¡œì§€ìŠ¤í‹± íšŒê·€ ì†ì‹¤í•¨ìˆ˜ BCE
 double BCE(double* P, struct DATA* D, int N_F, int N_S) {
 	double sum = 0;
 	int i;
